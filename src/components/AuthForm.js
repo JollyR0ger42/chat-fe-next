@@ -34,7 +34,7 @@ export default function AuthForm(props) {
       },
       body: JSON.stringify({login, password})
     })
-    props.setUser(await response.json())
+    props?.setUser?.(await response.json())
   }
 
   return (

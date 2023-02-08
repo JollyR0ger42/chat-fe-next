@@ -4,10 +4,9 @@ export default function Home() {
   const [state, setState] = useState('')
 
   useEffect(() => {
-    console.log('useEffect', process)
     fetch(process.env.APP_URL + '/')
       .then((response) => response.text())
-      // .then((data) => setState(data))
+      .then((data) => setState(data))
   }, [])
 
   useEffect(() => console.log('useEffect2:', state), [state])
