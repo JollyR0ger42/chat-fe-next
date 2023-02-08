@@ -1,5 +1,8 @@
-export default function Header(props) {
-  return (
-    <header>Login: {props?.user?.login}</header>
-  )
+import { useContext } from 'react'
+import UserContext from '../contexts/user.js'
+
+export default function Header() {
+  const [user] = useContext(UserContext)
+
+  return <header>Login: {user.login}</header>
 }

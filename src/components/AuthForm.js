@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react'
+import UserContext from '../contexts/user.js'
 
-export default function AuthForm(props) {
+export default function AuthForm() {
   const [login, setLogin] = useState('user')
   const [password, setPassword] = useState('password')
+  const [user, setUser] = useContext(UserContext)
 
   const onNameChange = (e) => {
     setLogin(e.target.value)
@@ -20,7 +22,7 @@ export default function AuthForm(props) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({login, password})
+      body: JSON.stringify({ login, password })
     })
   }
 
@@ -32,9 +34,9 @@ export default function AuthForm(props) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({login, password})
+      body: JSON.stringify({ login, password })
     })
-    props?.setUser?.(await response.json())
+    setUser(await response.json())
   }
 
   return (
