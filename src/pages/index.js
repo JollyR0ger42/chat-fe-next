@@ -1,19 +1,20 @@
-// import { useRouter } from 'next/router'
-// import { useEffect, useContext } from 'react'
-
-// import UserContext from '../contexts/user.js'
 import Chat from '../components/Chat.js'
+import { useRouter } from 'next/router'
 
 export default function Home() {
-  // const [user, setUser] = useContext(UserContext)
-  // const router = useRouter()
+  const router = useRouter()
 
-  // useEffect(() => {
-  //   console.log(user)
-  //   if (!user?.login) {
-  //     console.log("router.push('/auth')")
-  //   }
-  // }, [user, router])
+  fetch(process.env.APP_URL + '/chats', {credentials: 'include'})
+    .then(response => {
+      if (response.status === 401) {
+        router.push('/auth')
+      }
+      else {
+        return response.json()
+      }
+    })
+    .then(console.log)
+    .catch(console.log)
 
   return (
     <>

@@ -39,6 +39,11 @@ export default function AuthForm() {
     setUser(await response.json())
   }
 
+  const onLogout = (e) => {
+    e.preventDefault()
+    fetch(process.env.APP_URL + '/logout', { credentials: 'include' })
+  }
+
   return (
     <form>
       <label>
@@ -51,6 +56,7 @@ export default function AuthForm() {
       </label>
       <button onClick={onSignup}>Signup</button>
       <button onClick={onLogin}>Login</button>
+      <button onClick={onLogout}>Logout</button>
     </form>
   )
 }
