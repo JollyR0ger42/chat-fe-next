@@ -1,8 +1,8 @@
-import Router from 'next/router'
+import {useRouter} from 'next/router'
 import Chat from '../../components/Chat.js'
 
 export default function UserChat() {
-  const { userName } = Router.query
+  const { userName } = useRouter().query
 
   return (
     <>
