@@ -1,8 +1,21 @@
 import { useContext } from 'react'
 import UserContext from '../contexts/user.js'
+import Router from 'next/router'
 
 export default function Header() {
   const [user] = useContext(UserContext)
 
-  return <header>Login: {user.login}</header>
+  const onLogout = (e) => {
+    fetch(process.env.APP_URL + '/logout', { credentials: 'include' })
+    Router.reload()
+  }
+
+  return (
+  <header>
+    <span>Login: {user.login}</span>
+    <button onClick={() => Router.push('/auth')}>Auth</button>
+    <button onClick={onLogout}>Logout</button>
+    <button onClick={() => Router.push('/')}>Home</button>
+  </header>
+  )
 }
