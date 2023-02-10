@@ -3,10 +3,11 @@ import UserContext from '../contexts/user.js'
 import Router from 'next/router'
 
 export default function Header() {
-  const [user] = useContext(UserContext)
+  const [user, setUser] = useContext(UserContext)
 
   const onLogout = (e) => {
     fetch(process.env.APP_URL + '/logout', { credentials: 'include' })
+    setUser({})
     Router.reload()
   }
 

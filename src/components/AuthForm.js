@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import UserContext from '../contexts/user.js'
+import Router from 'next/router'
 
 export default function AuthForm() {
   const [login, setLogin] = useState('user')
@@ -37,11 +38,13 @@ export default function AuthForm() {
       body: JSON.stringify({ login, password })
     })
     setUser(await response.json())
+    Router.push('/')
   }
 
   const onLogout = (e) => {
     e.preventDefault()
     fetch(process.env.APP_URL + '/logout', { credentials: 'include' })
+    setUser({})
   }
 
   return (
