@@ -1,5 +1,5 @@
-import Chats from '../components/Chats.js'
+import Users from '../components/Users.js'
 
 export default function Home() {
-  return <Chats />
+  return <Users />
 }

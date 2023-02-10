@@ -1,10 +1,11 @@
-import Chat from './Chat.js'
+import User from './User.js'
 import Router from 'next/router'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import UserContext from '../contexts/user.js'
 
-export default function Chats() {
+export default function Users() {
   const [user, setUser] = useContext(UserContext)
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     fetch(process.env.APP_URL + '/users', { credentials: 'include' })
@@ -17,16 +18,13 @@ export default function Chats() {
           return response.json()
         }
       })
-      .then(console.log)
+      .then(data => setUsers(data))
       .catch(console.log)
   }, [])
 
   return (
     <>
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
+      {users.map((item, idx) => <User userName={item.login} key={idx} />)}
     </>
   )
 }

@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
   <header>
-    <span>Login: {user.login}</span>
+    <div>Login: {user.login}</div>
     <button onClick={() => Router.push('/auth')}>Auth</button>
     <button onClick={onLogout}>Logout</button>
     <button onClick={() => Router.push('/')}>Home</button>
