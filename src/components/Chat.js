@@ -3,12 +3,24 @@ import { useState } from 'react'
 
 export default function Chat(props) {
   
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('Yo')
 
-  const onMessageChange = () => {
+  const onMessageChange = (e) => {
+    setMessage(e.target.value)
   }
 
   const onSend = () => {
+    fetch(process.env.APP_URL + '/messages', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 
+        message,
+        receiver: props.userName
+       })
+    })
   }
 
   return (

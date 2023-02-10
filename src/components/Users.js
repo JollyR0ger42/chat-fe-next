@@ -18,7 +18,7 @@ export default function Users() {
           return response.json()
         }
       })
-      .then(data => setUsers(data))
+      .then(data => setUsers(data || []))
       .catch(console.log)
   }, [])
 
