@@ -41,12 +41,6 @@ export default function AuthForm() {
     Router.push('/')
   }
 
-  const onLogout = (e) => {
-    e.preventDefault()
-    fetch(process.env.APP_URL + '/logout', { credentials: 'include' })
-    setUser({})
-  }
-
   return (
     <form>
       <label>
@@ -59,7 +53,6 @@ export default function AuthForm() {
       </label>
       <button onClick={onSignup}>Signup</button>
       <button onClick={onLogin}>Login</button>
-      <button onClick={onLogout}>Logout</button>
     </form>
   )
 }

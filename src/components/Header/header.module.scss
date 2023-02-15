@@ -1,0 +1,16 @@
+.header {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__button {
+    padding: 2px 5px;
+  }
+
+  &__buttons {
+    & > *:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
